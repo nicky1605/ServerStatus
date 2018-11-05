@@ -1,12 +1,11 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
-SERVER = "127.0.0.1"
-PORT = 35601
-USER = "USER" 
-PASSWORD = "USER_PASSWORD"
-INTERVAL = 1 #更新间隔
-
+SERVER="status.botox.bz"
+PORT=35601
+USER="s01"
+PASSWORD="some-hard-to-guess-copy-paste-password"
+INTERVAL=1  #更新间隔
 
 import socket
 import time
