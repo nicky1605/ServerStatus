@@ -1,11 +1,12 @@
 # ServerStatus中文版：   
 
-* ServerStatus中文版是一个酷炫高逼格的云探针、云监控、服务器云监控、多服务器探针~，该云监控（云探针）是ServerStatus（ https://github.com/BotoX/ServerStatus ）项目的中文（优化）版。
+* ServerStatus中文版是一个酷炫高逼格的云探针、云监控、服务器云监控、多服务器探针~，该云监控（云探针）是ServerStatus（https://github.com/BotoX/ServerStatus ）项目的中文（优化）版。
 * 在线演示：https://tz.cloudcpp.com 
 
 安装前请注意以下事项：
 * 建议切换到非特权用户或创建一个用户。
 * 需要在服务器上打开35601端口。
+* CentOS 6不能安装服务端，升级Python后可以安装客户端。
 
 这个版本是91yun在原来的基础进行了以下改动：
 * 增加了探测被墙的状态
@@ -161,7 +162,7 @@ systemctl start sergate
 ```
 systemctl enable sergate
 ```
-#注意：如果用非root用户配置，需要确保该用户可以访问Web路径，并可以写入web/json目录。
+**注意：如果用非root用户配置，需要确保该用户可以访问Web路径，并可以写入web/json目录。
 
 ## 客户端配置
 ---
@@ -184,13 +185,14 @@ make distclean
 
 mv /usr/bin/python /usr/bin/python2.6.6
 ln -s /usr/local/python27/bin/python2.7 /usr/bin/python
-
-#最后将yum配置文件中/usr/bin/python修改为/usr/bin/python2.6.6 
+```
+**最后将yum配置文件中/usr/bin/python修改为/usr/bin/python2.6.6 
+```
 vi /usr/bin/yum
 ```
 
 ### 修改配置文件client-linux.py或client-psutil.py
-#注意这里的USER跟PASSWORD需要跟服务端的config.json中用户名密码一致。
+**注意这里的USER跟PASSWORD需要跟服务端的config.json中用户名密码一致。
 ```
 SERVER = "status.botox.bz"
 PORT = 35601
