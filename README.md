@@ -74,12 +74,12 @@ password可以所有客户端都一样，但是username必须确保所有客户�
 程序还支持命令行开关，查找帮助需要添加-h
 
 ```
-    -h, --help            Show this help message and exit
-    -v, --verbose         Verbose output
-    -c, --config=<str>    Config file to use
-    -d, --web-dir=<str>   Location of the web directory
-    -b, --bind=<str>      Bind to address
-    -p, --port=<int>      Listen on port
+    -h, --help            显示帮助命令
+    -v, --verbose         冗长输出
+    -c, --config=<str>    设置配置文件
+    -d, --web-dir=<str>   设置web目录
+    -b, --bind=<str>      绑定到地址
+    -p, --port=<int>      监听端口
     
  ```
 ### web运行环境配置
@@ -94,7 +94,7 @@ cp -r ../web/ /usr/share/nginx/html
 ```
 ./sergate --config=config.json --web-dir=/usr/share/nginx/html/web/
 ```
-在浏览器中输入http://ip/web即可查看效果
+在浏览器中输入 ip/web  即可查看效果
 
 ---
 以下待修改
