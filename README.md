@@ -1,7 +1,11 @@
 # ServerStatus中文版：   
 
 * ServerStatus中文版是一个酷炫高逼格的云探针、云监控、服务器云监控、多服务器探针~，该云监控（云探针）是ServerStatus（ https://github.com/BotoX/ServerStatus ）项目的中文（优化）版。
-* 在线演示：https://tz.cloudcpp.com  
+* 在线演示：https://tz.cloudcpp.com 
+
+安装前请注意以下事项：
+* 建议切换到非特权用户或创建一个用户。
+* 需要在服务器上打开35601端口。
 
 这个版本是91yun在原来的基础进行了以下改动：
 * 增加了探测被墙的状态
@@ -17,42 +21,36 @@
 * web      网站文件             
 
 # 安装教程：     
-
-【服务端配置】
-          
-一、服务器端依赖环境安装（docker和vnstat）           
+---
+## 服务端配置
+***          
+### 服务器端依赖环境安装           
 ```
-yum install -y epel-release
-yum -y install docker-io
-service docker start
-chkconfig docker on
-
+yum install -y epel-release vnstat
 yum install -y vnstat
 service vnstat start
 chkconfig vnstat on
 
 ```
-二、创建docker镜像
-```
-#创建目录
-mkdir /home/ServerStatus
-#拉取默认配置文件
-cd /home/ServerStatus
-wget --no-check-certificate https://raw.githubusercontent.com/91yun/ServerStatus/master/server/config.json
-#创建docker镜像
-docker create --name=sss \
---restart=always \
--v /home/ServerStatus/config.json:/ServerStatus/server/config.json \
--p 3561:3561 \
--p 80:80 \
-rongdede/serverstatus:server
-```
 
+### 下载代码并试运行
 
-三、修改服务器配置文件         
-    vim /home/ServerStatus/config.json
+```
+cd /usr/local/share
+git clone https://github.com/nicky1605/ServerStatus.git
+cd ServerStatus/server
+make
+./sergate
+
+```
+如果提示端口被占用请自行解决。
+
+### 修改服务器配置文件
+
 修改config.json文件，注意username, password的值需要和客户端对应一致
-password可以所有客户端都一样，但是username必须确保所有客户端都是唯一的                
+password可以所有客户端都一样，但是username必须确保所有客户端都是唯一的
+注意这里的username只作为鉴定服务器，不需要在客户端建立实际用户
+
 ```
 {"servers":
 	[
@@ -68,23 +66,39 @@ password可以所有客户端都一样，但是username必须确保所有客户�
 }       
 ```
 
-四、运行服务端：             
-```
-docker start sss
-```
+如果要暂时禁用服务器，可以添加
 
-五、进阶应用：添加需要用户名和密码登录才能查看的功能
-创建docker镜像的时候，增加两个参数 USERNAME和PASSWORD
 ```
-docker create --name=sss \
---restart=always \
--v /home/ServerStatus/config.json:/ServerStatus/server/config.json \
--p 3561:3561 \
--p 80:80 \
--e "USERNAME=admin" \
--e "PASSWORD=91yun" \
-rongdede/serverstatus:server
+"disabled": true
 ```
+程序还支持命令行开关，查找帮助需要添加-h
+
+```
+    -h, --help            Show this help message and exit
+    -v, --verbose         Verbose output
+    -c, --config=<str>    Config file to use
+    -d, --web-dir=<str>   Location of the web directory
+    -b, --bind=<str>      Bind to address
+    -p, --port=<int>      Listen on port
+    
+ ```
+### web运行环境配置
+需要先把web文件夹中的内容拷贝到apache或是nginx文件夹中，这里以nginx为例
+
+```
+cp -r ../web/ /usr/share/nginx/html
+
+```
+### 试运行
+
+```
+./sergate --config=config.json --web-dir=/usr/share/nginx/html/web/
+```
+在浏览器中输入http://ip/web即可查看效果
+
+---
+以下待修改
+---
 
 【客户端配置】
 ```
