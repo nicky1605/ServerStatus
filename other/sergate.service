@@ -6,9 +6,9 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/usr/local/share/ServerStatus/server
-User=botox.bz
-Group=http
-ExecStart=/usr/local/share/ServerStatus/server/sergate -d /home/botox.bz/status
+User=root
+Group=root
+ExecStart=/usr/local/share/ServerStatus/server/sergate -d /usr/share/nginx/html/web/
 ExecReload=/bin/kill -HUP $MAINPID
 StandardOutput=syslog
 StandardError=syslog
