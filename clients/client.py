@@ -1,8 +1,5 @@
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
-# Update by : https://github.com/tenyue/ServerStatus
-# 支持Python版本：2.6 to 3.5
-# 支持操作系统： Linux, OSX, FreeBSD, OpenBSD and NetBSD, both 32-bit and 64-bit architectures
-
 
 SERVER = "127.0.0.1"
 PORT = 35601
