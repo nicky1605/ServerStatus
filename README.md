@@ -191,7 +191,7 @@ systemctl start sergate
 systemctl enable sergate
 
 ```
-# #注意：如果用非root用户配置，需要确保该用户可以访问Web路径，并可以写入web/json目录。
+#注意：如果用非root用户配置，需要确保该用户可以访问Web路径，并可以写入web/json目录。
 
 ## 客户端配置
 如果是CentOS 6需要讲Python升级到2.7
@@ -222,7 +222,7 @@ vi /usr/bin/yum
 ```
 
 ### 修改配置文件client-linux.py或client-psutil.py
-# #注意这里的USER跟PASSWORD需要跟服务端的config.json中用户名密码一致。
+#注意这里的USER跟PASSWORD需要跟服务端的config.json中用户名密码一致。
 ```
 SERVER = "status.botox.bz"
 PORT = 35601
@@ -295,7 +295,7 @@ ExecStart=/usr/local/share/ServerStatus/clients/client.py
 [Install]
 WantedBy=multi-user.target
 ```
-# 相关开源项目，感谢： 
+# 参考相关开源项目： 
 
 * 91yun: https://github.com/91yun/ServerStatus
 * ServerStatus: https://github.com/BotoX/ServerStatus
