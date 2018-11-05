@@ -140,7 +140,7 @@ Type=simple
 WorkingDirectory=/usr/local/share/ServerStatus/server
 User=botox.bz
 Group=http
-ExecStart=/usr/local/share/ServerStatus/server/sergate -d /usr/share/nginx/html/web/
+ExecStart=/usr/local/share/ServerStatus/server/sergate -d /home/botox.bz/status
 ExecReload=/bin/kill -HUP $MAINPID
 StandardOutput=syslog
 StandardError=syslog
@@ -148,6 +148,10 @@ SyslogIdentifier=sergate
 
 [Install]
 WantedBy=multi-user.target
+```
+当然也可以下载我的配置。
+```
+wget --no-check-certificate https://raw.github.com/nicky1605/ServerStatus/master/other/sergate.service
 ```
 用root用户将修改好的配置文件拷贝到系统目录：
 ```
@@ -166,7 +170,7 @@ systemctl enable sergate
 
 ## 客户端配置
 ---
-如果是CentOS 6需要讲Python升级到2.7
+如果是CentOS 6 需要讲Python升级到2.7
 ### 服务器端依赖环境安装
 CentOS6 升级Python
 ```
@@ -190,8 +194,11 @@ ln -s /usr/local/python27/bin/python2.7 /usr/bin/python
 ```
 vi /usr/bin/yum
 ```
-
-### 修改配置文件client-linux.py或client-psutil.py
+下载代码
+```
+wget --no-check-certificate https://raw.github.com/nicky1605/ServerStatus/master/clients/client.py
+```
+### 修改配置文件client.py或client-psutil.py
 **注意这里的USER跟PASSWORD需要跟服务端的config.json中用户名密码一致。
 ```
 SERVER = "status.botox.bz"
@@ -245,20 +252,9 @@ ExecStart=/path/to/client.py
 [Install]
 WantedBy=multi-user.target
 ```
-以下为我的配置。
+当然也可以下载我的配置。
 ```
-[Unit]
-Description=ServerStatus Client
-After=network.target
-
-[Service]
-Type=simple
-IgnoreSIGPIPE=no
-User=root
-ExecStart=/usr/local/share/ServerStatus/clients/client.py
-
-[Install]
-WantedBy=multi-user.target
+wget --no-check-certificate https://raw.github.com/nicky1605/ServerStatus/master/other/serverstatus.service
 ```
 # 参考相关开源项目： 
 
