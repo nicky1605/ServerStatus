@@ -1,0 +1,12 @@
+[Unit]
+Description=ServerStatus Client
+After=network.target
+
+[Service]
+Type=simple
+IgnoreSIGPIPE=no
+User=root
+ExecStart=/usr/local/share/ServerStatus/clients/client.py
+
+[Install]
+WantedBy=multi-user.target
