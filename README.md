@@ -29,8 +29,12 @@
 ```
 yum install -y epel-release vnstat
 yum install -y vnstat
-service vnstat start
+service vnstat start #CentOS6
+systemctl start vnstat.service #CentOS7
+vnstatd -d
 chkconfig vnstat on
+vnstat --testkernel #如果修改了内核建议还要运行此命令
+
 ```
 ### 下载代码并试运行
 ```
