@@ -27,12 +27,22 @@
 注意这里的服务器不支持CentOS 6及以下 
 ### 服务器端依赖环境安装           
 ```
+### CentOS 用户安装
 yum install -y epel-release vnstat
 yum install -y vnstat
 service vnstat start #CentOS6
 systemctl start vnstat.service #CentOS7
-vnstatd -d
-chkconfig vnstat on
+chkconfig vnstat on 
+
+### Debian 用户安装
+apt-get install vnstat
+update-rc.d vnstat enable
+
+
+### vnstat 使用
+vnstatd -d #启动监控
+vnstat -u -i eth0  #创建端口流量数据库
+vi /etc/sysconfig/vnstat #如果CentOS 不是eth0还需要修改配置文件
 vnstat --testkernel #如果修改了内核建议还要运行此命令
 
 ```
@@ -263,6 +273,7 @@ wget --no-check-certificate https://raw.github.com/nicky1605/ServerStatus/master
 # 参考相关开源项目： 
 
 * 91yun: https://github.com/91yun/ServerStatus
+* ToyoDAdoubi: https://github.com/ToyoDAdoubi/ServerStatus-Toyo
 * ServerStatus: https://github.com/BotoX/ServerStatus
 * mojeda's ServerStatus: https://github.com/mojeda/ServerStatus
 * BlueVM's project: http://www.lowendtalk.com/discussion/comment/169690#Comment_169690
